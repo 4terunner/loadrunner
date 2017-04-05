@@ -7,6 +7,6 @@ Accept-Encoding: gzip, deflate
 Accept: */*
 Connection: Keep-Alive
 Host: localhost
-Cookie: MoodleSession=fqeqsbk7154iikierl9r96ee96
+Cookie: MoodleSession=3nh86ie9iv1v80pktqmfcf42h0
 Content-Length: 244
 

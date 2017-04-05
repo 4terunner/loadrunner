@@ -1,0 +1,13 @@
+[t14]
+SnapshotXmlFile=snapshot_11.xml
+ContentType=DummyContentType
+StepName=Submit Data: ajax.php_4
+Total=1
+FileName1=t14.UNK
+RequestHeaderFile=t14_RequestHeader.txt
+ResponseHeaderFile=t14_ResponseHeader.txt
+RawStepEndTime=0
+RawStepName=ajax.php_4
+RequestBodyFile=t14_RequestBody.txt
+RawStepStartTime=1491408972306
+URL1=http://localhost/moodle/enrol/manual/ajax.php

@@ -373,7 +373,7 @@ void approval()
 
 }
 
-void courseenrol()
+void tempshit()
 {
 //	char somest [200];
 //	int i;
@@ -492,12 +492,10 @@ void creation2()
 	char SelectedCountry[100];
 	int country_count;
 	int i;
-	//int id;
+
 	lr_save_int(atoi(lr_eval_string("{DATABASE_ID}")), "USER_ID");
 	
 	sprintf(userName, lr_eval_string("student{USER_ID}"));
-	//sprintf(id, lr_eval_string("{USER_ID}"));
-	
 	lr_save_string(userName, "USER_NAME");
 	sprintf(userEmail, lr_eval_string("student{USER_ID}@mail.com"));
 	lr_save_string(userEmail, "USER_EMAIL");
