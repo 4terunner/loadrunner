@@ -1,0 +1,8 @@
+[vuser_init]
+SnapshotIndex=I1_vuser_init
+[Launch]
+SnapshotIndex=I1_Launch
+[vuser_end]
+SnapshotIndex=I1_vuser_end
+[Debug]
+SnapshotIndex=I1_Debug

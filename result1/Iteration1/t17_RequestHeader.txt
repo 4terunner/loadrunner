@@ -1,0 +1,9 @@
+GET /moodle/user/view.php?id=174&course=8 HTTP/1.1
+Referer: http://localhost/moodle/enrol/users.php?id=8&page=0&perpage=100&sort=lastname&dir=ASC
+User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)
+Accept-Encoding: gzip, deflate
+Accept: */*
+Connection: Keep-Alive
+Host: localhost
+Cookie: MoodleSession=ulif92d5kgl7qfrasmkrbsjtm7
+
