@@ -1,13 +1,13 @@
 [t3]
 SnapshotXmlFile=snapshot_2.xml
 ContentType=text/html
-StepName=Url: Login
+StepName=Url: view.php
 Total=1
 FileName1=t3.html
 RequestHeaderFile=t3_RequestHeader.txt
 ResponseHeaderFile=t3_ResponseHeader.txt
 RawStepEndTime=0
-RawStepName=Login
+RawStepName=view.php
 RequestBodyFile=t3_RequestBody.txt
-RawStepStartTime=1491391511532
-URL1=http://localhost/moodle/login/index.php
+RawStepStartTime=1491408346892
+URL1=http://localhost/moodle/admin/user.php?sort=firstname&dir=ASC&perpage=300&page=0

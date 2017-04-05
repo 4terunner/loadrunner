@@ -11,3 +11,8 @@ Format="%d"
 OriginalValue=""
 ParamName="ITER_NUMBER"
 Type="CurrentIteration"
+[parameter:ITER_NUMBER2]
+Format="%d"
+OriginalValue=""
+ParamName="ITER_NUMBER2"
+Type="CurrentIteration"

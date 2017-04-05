@@ -1,9 +1,9 @@
-GET /moodle/login/index.php HTTP/1.1
+GET /moodle/admin/user.php?sort=firstname&dir=ASC&perpage=300&page=0 HTTP/1.1
 Referer: http://localhost/moodle/
 User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)
 Accept-Encoding: gzip, deflate
 Accept: */*
 Connection: Keep-Alive
 Host: localhost
-Cookie: MoodleSession=pm69cmjitm5g1t8cp7vv9fr8g1
+Cookie: MoodleSession=fqeqsbk7154iikierl9r96ee96
 

@@ -1,13 +1,13 @@
 [t6]
 SnapshotXmlFile=snapshot_4.xml
 ContentType=text/html
-StepName=Submit Data: index.php_2
+StepName=Submit Data: signup.php_2
 Total=1
 FileName1=t6.html
 RequestHeaderFile=t6_RequestHeader.txt
 ResponseHeaderFile=t6_ResponseHeader.txt
 RawStepEndTime=0
-RawStepName=index.php_2
+RawStepName=signup.php_2
 RequestBodyFile=t6_RequestBody.txt
-RawStepStartTime=1491391514472
-URL1=http://localhost/moodle/
+RawStepStartTime=1491408350508
+URL1=http://localhost/moodle/login/signup.php

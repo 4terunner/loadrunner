@@ -1,3 +1,0 @@
-"sesskey=u9mzTm6z9t&_qf__login_signup_form=1&username=student174&password=Welcome1%21&email=stu"
-"dent174%40mail.com&email2=student174%40mail.com&firstname=student174&lastname=student174&city="
-"student174&country=DZ&submitbutton=Create+my+new+account"

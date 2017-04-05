@@ -1,9 +1,0 @@
-GET /moodle/admin/user.php?sort=name&dir=ASC&perpage=30&page=0&confirmuser=174&sesskey=MjNjtqFdPO HTTP/1.1
-Referer: http://localhost/moodle/admin/user.php
-User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: Keep-Alive
-Host: localhost
-Cookie: MoodleSession=8det9s62ni7ej1kcojn8bcijp6
-
