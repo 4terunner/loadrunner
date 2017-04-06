@@ -585,6 +585,107 @@ void creation2()
 	}
 }
 
+
+void creation3()
+{
+	char userName[100];
+	char userEmail[100];
+	char SelectedCountry[100];
+	int country_count;
+	int i;
+
+	lr_save_int(atoi(lr_eval_string("{MAX_ID}"))+1, "USER_ID");
+	
+	sprintf(userName, lr_eval_string("student{USER_ID}"));
+	lr_save_string(userName, "USER_NAME");
+	sprintf(userEmail, lr_eval_string("student{USER_ID}@mail.com"));
+	lr_save_string(userEmail, "USER_EMAIL");
+	
+	lr_message("UserName: %s, UserEmail: %s", userName, userEmail);
+		
+	/*Correlation comment - Do not change!  Original value='RRES6TigrZ' Name ='sesskey' Type ='ResponseBased'*/
+	web_reg_save_param_regexp(
+		"ParamName=sesskey",
+		"RegExp=\\{\"wwwroot\":\"http:\\\\/\\\\/localhost\\\\/moodle\",\"sesskey\":\"(.*?)\",",
+		SEARCH_FILTERS,
+		"Scope=Body",
+		"IgnoreRedirections=Yes",
+		"RequestUrl=*/moodle/*",
+		LAST);
+	
+	/*web_reg_save_param should be placed just above the request
+	Here we want to exclude the double quotes. So we used \” in both LB and RB.
+	Also we have used ORD=ALL to capture all the options
+	*/
+	web_reg_save_param("COUNTRIES", "LB/ic=<option value=\"", "RB=\">", "SaveLen=2", "ORD=all", LAST );
+	
+	web_url("moodle", 
+		"URL=http://localhost/moodle/login/signup.php", 
+		"Resource=0", 
+		"RecContentType=text/html", 
+		"Referer=", 
+		"Snapshot=t123.inf", 
+		"Mode=HTTP", 
+		LAST);
+	
+	//Capturing the Number of countries found using correlation
+		country_count=atoi(lr_eval_string("{COUNTRIES_count}"));
+		lr_output_message("#####################		Number of countries= %d",country_count);
+		
+		
+		for(i=1;i<=country_count;i++)
+		{
+		sprintf (SelectedCountry,"{COUNTRIES_%d}",i);
+		
+		
+		//Saving SelectedCountry to string "COUNTRY_CODE"
+		lr_save_string(lr_eval_string (SelectedCountry),"COUNTRY_CODE");
+		lr_message("Country code is: %s", lr_eval_string("{COUNTRY_CODE}"));  //This prints message with a country code
+		}
+		
+		//Code to select random value
+		sprintf (SelectedCountry,"{COUNTRIES_%d}",1 + rand() % country_count);
+		
+		//save SelectedCountry to String "COUNTRY"
+		lr_save_string( lr_eval_string (SelectedCountry),"COUNTRY" );
+		lr_message("#####################		Selected country : %s" , lr_eval_string("{COUNTRY}") );
+	
+	
+	web_reg_find("Text=An email should have been sent to your address at", "SaveCount=CreationSuccessful", LAST);
+	
+	web_submit_data("signup.php_2",
+		"Action=http://localhost/moodle/login/signup.php",
+		"Method=POST",
+		"EncodeAtSign=YES",
+		"RecContentType=text/html",
+		"Referer=http://localhost/moodle/login/signup.php?",
+		"Snapshot=t45.inf",
+		"Mode=HTTP",
+		ITEMDATA,
+		"Name=sesskey", "Value={sesskey}", ENDITEM,
+		"Name=_qf__login_signup_form", "Value=1", ENDITEM,
+		"Name=username", "Value={USER_NAME}", ENDITEM,
+		"Name=password", "Value=Welcome1!", ENDITEM,
+		"Name=email", "Value={USER_EMAIL}", ENDITEM,
+		"Name=email2", "Value={USER_EMAIL}", ENDITEM,
+		"Name=firstname", "Value={USER_NAME}", ENDITEM,
+		"Name=lastname", "Value={USER_NAME}", ENDITEM,
+		"Name=city", "Value={USER_NAME}", ENDITEM,
+		"Name=country", "Value={COUNTRY}", ENDITEM,
+		"Name=submitbutton", "Value=Create my new account", ENDITEM,
+		LAST);
+	
+	if ( atoi(lr_eval_string("{CreationSuccessful}")) > 0)
+	{
+	lr_message("###############		Student creation is successful		###############");
+	}
+	else
+	{
+	lr_error_message("###############		Student creation is failed		###############");
+	//lr_exit(LR_EXIT_ITERATION_AND_CONTINUE, LR_FAIL);
+	}
+}
+
 void mysql()
 {
 	int rc; // return code
