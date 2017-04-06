@@ -1,7 +1,7 @@
 [parameter:COURSE_ID]
 Format="%lu"
 GenerateNewVal="EachIteration"
-MaxValue="104"
+MaxValue="101"
 MinValue="4"
 OriginalValue=""
 ParamName="COURSE_ID"
@@ -10,9 +10,4 @@ Type="Random"
 Format="%d"
 OriginalValue=""
 ParamName="ITER_NUMBER"
-Type="CurrentIteration"
-[parameter:ITER_NUMBER2]
-Format="%d"
-OriginalValue=""
-ParamName="ITER_NUMBER2"
 Type="CurrentIteration"

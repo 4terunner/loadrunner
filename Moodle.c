@@ -17,7 +17,7 @@ int i;
 switch (userType)
 {
 	case 1:
-		userName = lr_eval_string("{USER_NAME}");
+		userName = lr_eval_string("student{USER_ID}");
 		break;
 	case 2:
 		userName = "teacher1";
@@ -583,4 +583,101 @@ void creation2()
 	lr_error_message("###############		Student creation is failed		###############");
 	//lr_exit(LR_EXIT_ITERATION_AND_CONTINUE, LR_FAIL);
 	}
+}
+
+void mysql()
+{
+	int rc; // return code
+	int db_connection; // Declaractions is a bit dodgy. Should really use MYSQL defined in mysql.h
+	int query_result; // Declaractions is a bit dodgy. Should really use MYSQL_RES defined in mysql.h
+	char** result_row; // Return data as array of strings. Declaractions is a bit dodgy. Should really use MYSQL_ROW defined in mysql.h
+ 	char** result_row_2;
+	char *server = "localhost";
+	char *user = "root";
+  	char *password = ""; // very naughty to leave default root account with no password :)
+  	char *database = "moodle";
+  	int port = 3306; // default MySQL port
+  	int unix_socket = NULL; // leave this as null
+  	int flags = 0; // no flags
+  	int rows;
+ 
+  	// You should be able to find the MySQL DLL somewhere in your MySQL install directory.
+  	rc = lr_load_dll("C:\\xampp\\mysql\\lib\\libmysql.dll");
+  	if (rc != 0) {
+    	lr_error_message("Could not load libmysql.dll");
+    	lr_abort();
+  	}
+ 
+  	// Allocate and initialise a new MySQL object
+  	db_connection = mysql_init(NULL);
+  	if (db_connection == NULL) {
+    	lr_error_message("Insufficient memory");
+    	lr_abort();
+  	}
+ 
+  	// Connect to the database
+  	rc = mysql_real_connect(db_connection, server, user, password, database, port, unix_socket, flags);
+  	if (rc == NULL) {
+    	lr_error_message("%s", mysql_error(db_connection));
+    	mysql_close(db_connection);
+    	lr_abort();
+  	}
+  
+  
+    // SELECT a single value from the database table, and print the result
+  	rc = mysql_query(db_connection, "SELECT MAX(id) FROM mdl_user"); //WHERE status IS FALSE LIMIT 1
+  	if (rc != 0) {
+    	lr_error_message("%s", mysql_error(db_connection));
+    	mysql_close(db_connection);
+    	lr_abort();
+  	}
+  	
+  	
+  	query_result = mysql_use_result(db_connection);
+  	if (query_result == NULL) {
+    	lr_error_message("%s", mysql_error(db_connection));
+    	mysql_free_result(query_result);
+    	mysql_close(db_connection);
+    	lr_abort();
+  	}
+  	
+  	result_row = (char **)mysql_fetch_row(query_result); // if the result set had multiple rows, we could keep calling mysql_fetch_row until it returned NULL to get all the rows.
+  	if (result_row == NULL) {
+    	lr_error_message("Did not expect the result set to be empty");
+    	mysql_free_result(query_result);
+    	mysql_close(db_connection);
+    	lr_abort();
+  	}
+  	
+  	lr_save_string(result_row[0], "MAX_ID"); // this parameter will be used when deleting the row.
+  	lr_output_message("##### Your output is: %s", lr_eval_string("{MAX_ID}"));
+  	mysql_free_result(query_result);
+
+	rows = mysql_query(db_connection, "SELECT COUNT(id) FROM mdl_user"); //WHERE status IS FALSE LIMIT 1
+  	if (rc != 0) {
+    	lr_error_message("%s", mysql_error(db_connection));
+    	mysql_close(db_connection);
+    	lr_abort();
+  	}
+  	lr_output_message("rows: %d", rows);
+  	
+  	query_result = mysql_use_result(db_connection);
+  	if (query_result == NULL) {
+    	lr_error_message("%s", mysql_error(db_connection));
+    	mysql_free_result(query_result);
+    	mysql_close(db_connection);
+    	lr_abort();
+  	}
+  
+  	result_row_2 = (char **)mysql_fetch_row(query_result); // if the result set had multiple rows, we could keep calling mysql_fetch_row until it returned NULL to get all the rows.
+  	if (result_row == NULL) {
+    	lr_error_message("Did not expect the result set to be empty");
+    	mysql_free_result(query_result);
+    	mysql_close(db_connection);
+    	lr_abort();
+  	}
+  	
+  	lr_save_string(result_row_2[0], "COUNT_ROWS"); // this parameter will be used when deleting the row.
+  	lr_output_message("##### Your output is: %s", lr_eval_string("{COUNT_ROWS}"));
+  	mysql_free_result(query_result);
 }

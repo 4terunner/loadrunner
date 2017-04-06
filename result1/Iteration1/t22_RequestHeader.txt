@@ -1,9 +1,0 @@
-GET /moodle/login/logout.php?sesskey=7HzJuPEbkf HTTP/1.1
-Referer: http://localhost/moodle/
-User-Agent: Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)
-Accept-Encoding: gzip, deflate
-Accept: */*
-Connection: Keep-Alive
-Host: localhost
-Cookie: MoodleSession=7afpt5paln2ulqkk2br5imv9q6
-
